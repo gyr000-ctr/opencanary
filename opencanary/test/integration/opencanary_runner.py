@@ -17,6 +17,7 @@ SERVICE_CLASSES = {
     "http": "CanaryHTTP",
     "https": "CanaryHTTPS",
     "httpproxy": "HTTPProxy",
+    "ldap": "CanaryLDAP",
     "mongodb": "CanaryMongoDB",
     "mysql": "CanaryMySQL",
     "ntp": "CanaryNtp",

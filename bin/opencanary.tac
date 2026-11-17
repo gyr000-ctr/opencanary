@@ -23,6 +23,7 @@ from opencanary.modules.redis import CanaryRedis
 from opencanary.modules.tcpbanner import CanaryTCPBanner
 from opencanary.modules.rdp import CanaryRDP
 from opencanary.modules.mongodb import CanaryMongoDB
+from opencanary.modules.ldap import CanaryLDAP
 
 config = Config()
 errors = config.checkValues()
@@ -48,6 +49,7 @@ MODULES = [
     CanaryGit,
     CanaryHTTP,
     CanaryHTTPS,
+    CanaryLDAP,
     CanaryMongoDB,
     CanaryMySQL,
     CanaryNtp,

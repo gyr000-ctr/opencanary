@@ -24,6 +24,7 @@ Currently, OpenCanary supports faking the following services natively:
 * `sip` - a SIP server that alerts on sip requests
 * `vnc` - a VNC server that alerts on login attempts
 * `redis` - a Redis server that alerts on actions
+* `ldap` - an LDAP server that alerts on bind credentials and search requests
 * `tftp` - a TFTP server that alerts on requests
 * `ntp` - an NTP server that alerts on NTP requests.
 * `tcpbanner` - a TCPbanner service that alerts on connection and subsequent data received events.
@@ -257,6 +258,13 @@ you will receive a json formatted config file at `/etc/opencanary/opencanary.con
         "redis.timeout": 5,
         "redis.timeout": 10,
         "redis.max_connections": 128,
+        "ldap.enabled": false,
+        "ldap.port": 389,
+        "ldap.base_dn": "dc=example,dc=com",
+        "ldap.timeout": 10,
+        "ldap.max_connections": 128,
+        "ldap.max_message_size": 65536,
+        "ldap.max_value_length": 1024,
         "rdp.enabled": false,
         "rdp.port": 3389,
         "sip.enabled": false,
@@ -315,7 +323,7 @@ These configuration options are also available.
      - Description
    * - device.listen_addr
      - ""
-     - Controls which IP interface the Git, RDP, Redis, and VNC modules bind to.
+     - Controls which IP interface the Git, LDAP, RDP, Redis, and VNC modules bind to.
    * - git.max_connections
      - 32
      - Maximum number of concurrent connections accepted by the Git module.
@@ -334,6 +342,21 @@ These configuration options are also available.
    * - redis.max_connections
      - 128
      - Maximum concurrent Redis connections; set to 0 to disable the limit.
+   * - ldap.base_dn
+     - "dc=example,dc=com"
+     - Distinguished name the forged LDAP directory is rooted at.
+   * - ldap.timeout
+     - 10
+     - Seconds an LDAP connection may remain idle before timing out; 0 disables it.
+   * - ldap.max_connections
+     - 128
+     - Maximum concurrent LDAP connections; set to 0 to disable the limit.
+   * - ldap.max_message_size
+     - 65536
+     - Maximum bytes buffered for a single LDAP message before the connection is dropped.
+   * - ldap.max_value_length
+     - 1024
+     - Maximum characters recorded for a DN, password, filter, or attribute in an alert.
    * - telnet.max_connections
      - 64
      - Maximum number of concurrent connections accepted by the Telnet module. The default matches systemd socket units using ``Accept=yes``.

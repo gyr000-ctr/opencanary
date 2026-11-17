@@ -42,10 +42,14 @@ INTEGER_RANGES = {
     "redis.max_arg_length": (0, None),
     "redis.max_bulk_string_length": (1, None),
     "redis.max_connections": (0, None),
+    "ldap.max_connections": (0, None),
+    "ldap.max_message_size": (1, None),
+    "ldap.max_value_length": (1, None),
 }
 
 NUMBER_RANGES = {
     "redis.timeout": (0, None),
+    "ldap.timeout": (0, None),
 }
 
 
